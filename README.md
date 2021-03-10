@@ -157,4 +157,6 @@ It adds the **Logs** and **Debug** sections in the Symfony Profiler
 
 <br />
 <hr />
-I have to watch [this](https://symfonycasts.com/screencast/symfony/console#play) lesson.
+
+I have to watch [this](https://symfonycasts.com/screencast/symfony/console#play) lesson.\
+What's next? [api-platform](https://symfonycasts.com/screencast/api-platform)

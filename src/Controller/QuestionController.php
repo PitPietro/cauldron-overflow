@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuestionController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/", name="app_homepage")
      */
     public function homepage(): Response
     {
@@ -20,13 +20,13 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/questions/{slug}")
+     * @Route("/questions/{slug}", name="app_question_show")
      * @param $slug
      * @return Response
      *
      * > Rendering a Template
      * The first shortcut method is ‘render’. ‘return this->render()’ and pass two arguments.
-     *     1.  filename of the template: you can put anything here, but usually you name this after our controller: ‘question/show.html.twig’.
+     *     1. filename of the template: you can put anything here, but usually you name this after our controller: ‘question/show.html.twig’.
      *     2. an array of any variables that you want to pass into the template. Eventually, you’re going to query the database for a specific question and pass that data into the template.
      */
     public function show($slug): Response
