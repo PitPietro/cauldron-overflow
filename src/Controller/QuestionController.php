@@ -4,10 +4,11 @@
 namespace App\Controller;
 
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class QuestionController
+class QuestionController extends AbstractController
 {
     /**
      * @Route("/")
@@ -21,16 +22,27 @@ class QuestionController
      * @Route("/questions/{slug}")
      * @param $slug
      * @return Response
+     *
+     * > Rendering a Template
+     * The first shortcut method is ‘render’. ‘return this->render()’ and pass two arguments.
+     *     1.  filename of the template: you can put anything here, but usually you name this after our controller: ‘question/show.html.twig’.
+     *     2. an array of any variables that you want to pass into the template. Eventually, you’re going to query the database for a specific question and pass that data into the template.
      */
     public function show($slug): Response
     {
+
+        $answers = [
+            'Make sure your cat is sitting purrrfectly still 🤣',
+            'Honestly, I like furry shoes better than MY cat',
+            'Maybe... try saying the spell backwards?',
+        ];
         /*
          * Using {...}, you can have an argument with the same name inside the () of the show function
          */
-        return new Response(sprintf(
-            'The wildcard of the annotation is: %s',
-            ucwords(str_replace('-', ' ', $slug))
-        ));
+        return $this->render('question/show.html.twig', [
+            'question' => ucwords(str_replace('-', ' ', $slug)),
+            'answers' => $answers
+        ]);
     }
 }
 

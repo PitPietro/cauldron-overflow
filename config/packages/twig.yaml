@@ -1,0 +1,4 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+
+# The only reason that Twig looks for templates in the templates/ directory is because our config/packages/twig.yaml file has this path in it
