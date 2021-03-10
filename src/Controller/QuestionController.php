@@ -15,7 +15,8 @@ class QuestionController extends AbstractController
      */
     public function homepage(): Response
     {
-        return new Response('What a controller I made! I am really happy to use Annotations, too!');
+        // return new Response('What a controller I made! I am really happy to use Annotations, too!');
+        return $this->render('question/homepage.html.twig');
     }
 
     /**
@@ -32,10 +33,16 @@ class QuestionController extends AbstractController
     {
 
         $answers = [
-            'Make sure your cat is sitting purrrfectly still 🤣',
+            'Make sure your cat is sitting perfectly still 🤣',
             'Honestly, I like furry shoes better than MY cat',
             'Maybe... try saying the spell backwards?',
         ];
+
+        dump($slug, $this);
+
+        // the command below also wills the page
+        // dd($slug, $this);
+
         /*
          * Using {...}, you can have an argument with the same name inside the () of the show function
          */

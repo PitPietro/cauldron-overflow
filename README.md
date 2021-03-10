@@ -127,5 +127,34 @@ Untracked files:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
+<hr />
 
+```bash
+composer require debug
+
+# shows the log in the Terminal
+php bin/console server:dump
+
+# the output is
+
+Symfony Var Dumper Server
+=========================
+
+                                                                                                                        
+ [OK] Server listening on tcp://127.0.0.1:9912                                                                          
+                                                                                                                        
+
+ // Quit the server with CONTROL-C.                                                                                     
+
+php bin/console server:dump
+
+Symfony Var Dumper Server
+=========================
+
+```
+
+It adds the **Logs** and **Debug** sections in the Symfony Profiler
+
+<br />
+<hr />
 I have to watch [this](https://symfonycasts.com/screencast/symfony/console#play) lesson.
