@@ -4,19 +4,38 @@
 namespace App\Controller;
 
 
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class QuestionController extends AbstractController
 {
     /**
+     * '\Twig\Environment' is the service that gets the Twig instance render templates
+     *
+     *
      * @Route("/", name="app_homepage")
+     * @param Environment $twigEnvironment
+     * @return Response
      */
-    public function homepage(): Response
+    public function homepage(Environment $twigEnvironment, LoggerInterface $logger): Response
     {
+        $html = '';
+
+        try {
+            $html = $twigEnvironment->render('question/homepage.html.twig');
+        } catch (LoaderError | SyntaxError | RuntimeError $e) {
+            $logger->critical('Cannot render homepage! ' . $html);
+        }
+
+        return new Response($html);
         // return new Response('What a controller I made! I am really happy to use Annotations, too!');
-        return $this->render('question/homepage.html.twig');
+        // return $this->render('question/homepage.html.twig');
     }
 
     /**

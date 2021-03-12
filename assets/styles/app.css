@@ -1,5 +1,8 @@
 /* https://github.com/SymfonyCasts/symfony5/blob/styling/public/css/app.css */
 
+/* ~ is 'Option' (or 'Alt Gr') + '5' */
+@import "~bootstrap";
+
 body {
     font-family: spartan, serif;
     color: #444;

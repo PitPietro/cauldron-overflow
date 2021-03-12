@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 // use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,9 +13,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class CommentController extends AbstractController
 {
     /**
-     * @Route("/comments/{id}/vote/{direction}")
+     * <\d+> is a regular expression that matches a digit of any length. It won't be used at the moment
+     * <up|down> is a regular expressions that only accept 'direction' to be "up" or "down"
+     *
+     * 'methods' tells which methods can access this route API endpoint (a GET will throw a 405 error).
+     *
+     * Thanks to the logger, you can see all the logging messages in the "Logs" section of the "Profiler"
+     *
+     * @Route("/comments/{id}/vote/{direction<up|down>}", methods="POST")
      */
-    public function commentVote($id, $direction)
+    public function commentVote($id, $direction, LoggerInterface $logger)
     {
         // use if to query the database
 
@@ -22,8 +30,10 @@ class CommentController extends AbstractController
         // the identity operator (===) requires both data types to be the same, as a prerequisite.
         if ($direction === 'up') {
             $currentVoteCount = rand(51, 100);
+            $logger->info('vote UP --> ' . $currentVoteCount);
         } else {
             $currentVoteCount = rand(0, 50);
+            $logger->info('vote DOWN --> ' . $currentVoteCount);
         }
 
         // the API endpoint is at https://localhost:8000/comments/10/vote/up for the if clause

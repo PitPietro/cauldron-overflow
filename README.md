@@ -156,6 +156,21 @@ Symfony Var Dumper Server
 It adds the **Logs** and **Debug** sections in the Symfony Profiler
 
 <br />
+
+### Webpack Encore
+```bash
+# install symfony/webpack-encore-bundle including files such as 'package.json'
+composer require encore
+
+yarn install
+
+# reads files in 'assets' and outputs the files in 'public/build' folder
+yarn watch
+
+yarn add jquery --dev
+
+yarn add bootstrap--dev
+```
 <hr />
 
 I have to watch [this](https://symfonycasts.com/screencast/symfony/console#play) lesson.\
